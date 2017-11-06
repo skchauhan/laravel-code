@@ -1,0 +1,24 @@
+App/Http/helpers.php
+
+function getFileExtension($file_name){
+  $temp= explode(".", $file_name);
+  return $temp[count($temp)-1];
+}
+
+
+
+composer.json
+"files": [
+  "app/Http/helpers.php"
+]
+
+
+composer dump-autoload
+
+
+
+run code
+
+$file_name = 'example.png';
+$extension=getFileExtension($file_name);
+echo $extension; // outputs png
