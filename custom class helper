@@ -1,0 +1,38 @@
+php artisan make:provider HelperServiceProvider
+
+HelperServiceProvider.php //file register function
+
+foreach (glob(app_path().'/Helpers/*.php') as $filename){
+    require_once($filename);
+}
+
+
+/config/app.php
+
+Provider array
+
+App\Providers\HelperServiceProvider::class,
+
+aliases array
+
+'MyFuncs' => App\Helpers\MyFuncs::class,
+
+web.php 
+
+Route::get('/func', function () {
+    return MyFuncs::full_name("John","Doe");
+});
+
+
+/app/Helpers/MyFuncs.php
+
+<?php
+
+namespace App\Helpers;
+
+class MyFuncs {
+
+    public static function full_name($first_name,$last_name) {
+        return $first_name . ', '. $last_name;   
+    }
+}
