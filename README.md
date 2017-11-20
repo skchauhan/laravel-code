@@ -103,3 +103,8 @@ url
 // echo URL::to('resources/assets/css/yourcssfile.css');
 
 
+
+
+
+
+Route::resource('students','StudentController');
