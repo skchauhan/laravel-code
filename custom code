@@ -1,0 +1,12 @@
+get last query in Laravel
+
+use Illuminate\Support\Facades\DB;
+
+
+
+DB::enableQueryLog();
+$user = User::get();
+$query = DB::getQueryLog();
+print_r($query);
+
+
