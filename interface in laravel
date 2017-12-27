@@ -1,0 +1,66 @@
+create folder under app folder filestorge
+
+==================create FileStorageInterface.php file===================================
+<?php
+namespace App\upload;
+	interface FileStorageInterface
+{
+	public function upload();
+	
+	public function delete();
+}
+
+
+==================Create S3FileStorage.php file===================================
+
+namespace App\upload;
+
+use App\upload\FileStorageInterface;
+class S3FileStorage implements FileStorageInterface 
+{
+    public function upload()
+    {
+        echo "Amazon S3 specific upload code here.";
+    }
+    
+    public function delete()
+    {
+        echo "Amazon S3 specific delete code here.";
+    }
+}
+
+
+======================AppServiceProvider.php============================
+
+use App\upload\FileStorageInterface;
+use App\upload\S3FileStorage;
+In register function
+$this->app->bind(FileStorageInterface::class, S3FileStorage::class);
+
+
+
+========================FileStorageController.php===================================================
+<?php
+namespace App\Http\Controllers;
+
+use App\upload\FileStorageInterface;
+use Illuminate\Http\Request;
+
+class FileStorageController extends Controller
+{
+    private $fileStorage;
+    
+    //Laravel will automatically resolve FileStorageInterface to the S3FileStorage class
+    public function __construct(FileStorageInterface $fileStorage)
+    {
+        $this->fileStorage = $fileStorage;
+    }
+    
+    public function deleteFile()
+    {
+        $this->fileStorage->delete();
+    }
+}
+
+
+
