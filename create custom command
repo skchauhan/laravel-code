@@ -1,0 +1,16 @@
+php artisan make:command userdata
+
+
+app/console/command/userdata.php
+
+change $signature = "userdata:info";
+
+
+public function handle()
+{
+     $this->info('Done!');
+}
+
+
+
+php artisan userdata:info
