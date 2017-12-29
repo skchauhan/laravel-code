@@ -1,0 +1,12 @@
+Available commands:
+  clear-compiled      Remove the compiled class file
+  down                Put the application into maintenance mode
+  env                 Display the current framework environment
+  help                Displays help for a command
+  inspire             Display an inspiring quote
+  list                Lists commands
+  migrate             Run the database migrations
+  optimize            Optimize the framework for better performance
+  serve               Serve the application on the PHP development server
+  tinker              Interact with your application
+  up                  Bring the application out of maintenance mode
