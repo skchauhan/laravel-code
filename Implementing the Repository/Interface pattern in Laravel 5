@@ -1,0 +1,64 @@
+Implementing the Repository/Interface pattern in Laravel 5
+
+..............
+Create BillingContract.php inside the app/Services/Billing/Contracts folder:
+
+<?php namespace App\Services\Billing\Contracts;
+
+interface BillingContract {
+	public function charge($customer_id, $amount);
+}
+
+.................
+So first we will create our StripeGateway.php class in app/Services/Billing:
+
+<?php namespace App\Services\Billing;
+
+class StripeGateway implements Contracts\BillingContract {
+	public function charge($customer_id, $amount) {
+		//Charge the customer
+	}
+}
+
+
+..........................
+So lets create BillingServiceProvider.php in app/Providers:
+
+<?php namespace App\Providers;
+use Illuminate\Support\ServiceProvider;
+class BillingServiceProvider extends ServiceProvider {	
+	public function register() {
+		$this->app->bind(
+			\App\Services\Billing\Contracts\BillingContract::class,
+			\App\Services\Billing\StripeGateway::class
+		);
+	}
+}
+
+....................
+config/app.php
+
+'providers' => [
+	App\Providers\BillingServiceProvider::class,
+],
+
+........................
+Controller 
+
+<?php namespace App\Http\Controllers; 
+use App\Http\Controllers\Controller;
+use App\Services\Billing\Contracts\BillingContract; 
+class BillingController extends Controller { 
+	protected $billing; 
+	public function __construct(BillingContract $billing) {
+		$this->billing = $billing;
+	}
+
+	public function create($customer_id, Request $request) {
+		$this->billing->charge($customer_id, $request->get('amount'));
+		return redirect()->route('billing.success')->withFlashSuccess("Thank you for your order!");
+	}
+}
+
+
+
