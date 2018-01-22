@@ -115,3 +115,9 @@ Route::get('admin/txt', "txt/TpController@text");
 Route::group(['namespace' => 'txt', 'prefix'=>'admin'], function() {
 	Route::get('txt', "TpController@text");
 });
+........................................
+
+$arr = ['name'=>'lorem', 'email'=>'lorem@gmail.com'];
+$obj = Student::create($arr);
+$obj->profile()->create(['phone'=>'999999999']);
+
