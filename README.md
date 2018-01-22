@@ -103,8 +103,15 @@ url
 // echo URL::to('resources/assets/css/yourcssfile.css');
 
 
-
-
-
-
 Route::resource('students','StudentController');
+
+
+
+
+------------
+
+Route::get('admin/txt', "txt/TpController@text");
+
+Route::group(['namespace' => 'txt', 'prefix'=>'admin'], function() {
+	Route::get('txt', "TpController@text");
+});
