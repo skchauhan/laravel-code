@@ -1,0 +1,110 @@
+Migration Files
+
+src/migrations ( Directory )
+....................................
+// src/migrations/0000_00_00_000000_create_websanova_demo_items_table.php
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateWebsanovaDemoItemsTable extends Migration
+{
+    public function up()
+    {
+        Schema::create('websanova_demo_items', function(Blueprint $t)
+        {
+            $t->increments('id')->unsigned();
+            $t->text('slug', 255);
+            $t->text('name', 255);
+            $t->text('description', 255);
+            $t->timestamps();
+        });
+    }
+
+    public function down()
+    {
+        Schema::drop('websanova_demo_items');
+    }
+}
+
+.....................................
+
+
+public function boot()
+{
+    $this->publishes([
+        __DIR__ . '/migrations' => $this->app->databasePath() . '/migrations'
+    ], 'migrations');
+
+    ...
+}
+
+......................................
+
+> php artisan vendor:publish --tag=migrations
+Or
+> php artisan migrate --path=/packages/websanova/demo/src/migrations
+
+..................................
+
+Seeding Files
+
+
+
+// src/seeds/DemoSeeder.php
+
+namespace Websanova\Demo;
+
+use Illuminate\Database\Seeder;
+
+class DemoSeeder extends Seeder
+{
+    public function run()
+    {
+        DB::table('websaanova_demo_items')->insert([
+            'slug' => 'test',
+            'name' => 'Test',
+            'description' => 'My first item test.',
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now()
+        ]);
+    }
+}
+....................................
+
+> php artisan db:seed --class=Websanova\Demo\Seeds\DemoSeeder
+
+
+...................................
+
+
+The only hassle here is that we can't run migrate:refresh --seed in one line. We will need to run them separately.
+
+> php artisan migrate:rollback
+> php artisan migrate --path=/packages/websanova/demo/src/migrations
+> php artisan db:seed --class=Websanova\Demo\Seeds\DemoSeeder
+
+
+.......................................
+
+
+Models
+
+// src/models/Item.php
+
+
+namespace Websanova\Demo\Models;
+use Illuminate\Database\Eloquent\Model;
+class Item extends Model
+{
+    protected $table = 'websanova_demo_items';
+}
+
+.......................
+
+src/Http/routes.php
+
+Route::get('demo/model', function () {
+    dd(\Websanova\Demo\Models\Item::get());
+});
+
