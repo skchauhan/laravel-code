@@ -1,7 +1,11 @@
 Migration Files
+.....................................
+
+https://websanova.com/blog/laravel/creating-a-new-package-in-laravel-5-part-4-database-migrations-and-seeding
 
 src/migrations ( Directory )
 ....................................
+
 // src/migrations/0000_00_00_000000_create_websanova_demo_items_table.php
 
 use Illuminate\Database\Schema\Blueprint;
