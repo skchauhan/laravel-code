@@ -1,0 +1,32 @@
+MAIL_DRIVER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=chauhansunil33@gmail.com
+MAIL_PASSWORD=*************************
+MAIL_ENCRYPTION=tls
+
+
+----------------------------------------------------------------
+
+Config/mail.php
+
+
+'stream' => [
+      'ssl' => [
+          'allow_self_signed' => true,
+          'verify_peer' => false,
+          'verify_peer_name' => false,
+      ],
+  ],
+ -----------------------------------------------------------
+  
+ view file 
+  
+   $user = User::findOrFail(1);
+
+    Mail::send('welcome', ['user' => $user], function ($m) use ($user) {
+        $m->from('hello@app.com', 'Your Application');
+
+        $m->to("skrajput42@gmail.com", $user->name)->subject('Your Reminder!');
+    });
+
