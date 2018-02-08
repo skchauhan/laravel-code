@@ -1,0 +1,26 @@
+For Permission
+
+crud:generate Permission --fields="name#string" --view-path="admin" --controller-namespace=Admin --route-group=admin --form-helper=laravelcollective
+
+after this command we have to delete two file first permission model and migration
+............................................................................................................
+
+For Role
+
+crud:generate Role --fields="name#string" --view-path="admin" --controller-namespace=Admin --route-group=admin --form-helper=laravelcollective
+
+after this command we have to delete two file first permission model and migration
+
+
+ show permission in create form in role
+
+$permissions = Permission::get()->pluck('name', 'name');
+
+............................................................................................................
+
+For User Section
+....................
+crud:controller UserController --crud-name=user --model-name=User --view-path="admin"  --route-group=admin
+
+crud:view user --fields="name#string; email#email; password#password; roles#select#options={'admin':'admin'}" --view-path="admin" --route-group=admin --form-helper=laravelcollective
+..........
