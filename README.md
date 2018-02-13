@@ -1,5 +1,14 @@
 # laravel-code
 
+..................................................
+
+For change migration
+composer require doctrine/dbal
+
+..................................................
+
+
+
 For migration
 
 app\Providers\AppServiceProvider.php
