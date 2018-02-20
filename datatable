@@ -1,0 +1,13 @@
+https://datatables.net/manual/installation
+
+npm install datatables.net-dt
+
+app.js
+
+import $ from 'jquery';
+import 'datatables.net';
+import 'datatables.net-dt/css/query.dataTables.css';
+
+call table
+
+$('#table_id').DataTable();
