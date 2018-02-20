@@ -1,0 +1,13 @@
+npm install 
+npm install admin-lte --save-dev
+
+In app.scss
+// import css files
+
+@import "~admin-lte/dist/css/AdminLTE.css";
+@import "~admin-lte/dist/css/skins/_all-skins.css";
+
+npm run watch
+
+In bootstrap.js
+require('admin-lte');
