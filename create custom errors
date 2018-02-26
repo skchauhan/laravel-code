@@ -1,0 +1,58 @@
+change in app/Exceptions/Handler.php file
+
+public function render($request, Exception $exception)
+{
+    if($this->isHttpException($exception))
+    {
+        switch ($exception->getStatusCode()) 
+            {
+            // not found
+            case 404:
+            return redirect()->route('notfound');
+            break;
+
+            // internal error
+            case '500':
+            return redirect()->route('notfound');
+            break;
+
+            default:
+                return $this->renderHttpException($e);
+            break;
+        }
+    }
+    else
+    {
+            return parent::render($request, $exception);
+    }
+}
+
+************************************************************
+
+Route::get('pagenotfound', ['as' => 'notfound', 'uses' => 'HomeController@pagenotfound']);
+
+************************************************************
+create pagenotfound() in HomeController
+
+
+public function pagenotfound()
+{
+    return view('errors.pagenotfound');
+}
+
+
+************************************************************
+In errors folder
+
+pagenotfound.blade.php
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Page Not Found</title>
+</head>
+<body>
+	<h1>Sorry, Page Not Found</h1>
+</body>
+</html>
