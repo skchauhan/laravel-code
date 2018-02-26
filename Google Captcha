@@ -1,0 +1,40 @@
+************************************************************
+ ***********************Google Captcha**********************
+************************************************************
+
+composer require buzz/laravel-google-captcha
+...........................................................
+
+
+***************** ServiceProvider ********************
+
+
+Add ServiceProvider to the providers array in config/app.php.
+'Buzz\LaravelGoogleCaptcha\CaptchaServiceProvider',
+
+Aliases
+
+'Captcha' => '\Buzz\LaravelGoogleCaptcha\CaptchaFacade'
+
+
+***************** ServiceProvider ********************
+
+php artisan vendor:publish --provider="Buzz\LaravelGoogleCaptcha\CaptchaServiceProvider"
+
+
+config/captcha.php
+
+Enter Detail Captcha
+
+
+
+***************** view blade file show captcha *****************
+
+{!! app('captcha')->display($attributes) !!}
+
+
+show message in error
+
+In form top
+
+{!! $errors->first('g-recaptcha-response','<p class="alert alert-danger">:message</p>')!!}
