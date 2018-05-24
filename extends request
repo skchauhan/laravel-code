@@ -1,0 +1,41 @@
+Content of app/Http/CustomRequest.php
+
+
+<?php 
+namespace App\Http;
+
+use Illuminate\Http\Request as BaseRequest;
+
+class CustomRequest extends BaseRequest {
+    public function test() 
+    {
+    	echo 'Custom Request';
+    }
+}
+
+
+-----------------
+add this line to public/index.php
+
+$app->alias('request', 'App\Http\CustomRequest');
+
+after
+
+app = require_once __DIR__.'/../bootstrap/app.php';
+
+change the code at public/index.php
+
+Illuminate\Http\Request::capture()
+
+to
+
+App\Http\CustomRequest::capture()
+
+
+===============================================
+
+Call extends function 
+
+Route::get('/', function ( Request $request ) {
+	$request->test();
+});
