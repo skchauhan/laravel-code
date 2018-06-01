@@ -1,0 +1,27 @@
+php artisan crud:generate Posts 
+--fields='title#string; content#text; category#select#options={"technology": "Technology", "tips": "Tips", "health": "Health"}' 
+--view-path=admin 
+--controller-namespace=Admin 
+--route-group=admin 
+--form-helper=html
+
+
+
+php artisan crud:controller PostsController 
+--crud-name=posts 
+--model-name=Post 
+--view-path="directory" 
+--route-group=admin
+
+
+php artisan crud:model Post --fillable="['title', 'body']"
+
+
+php artisan crud:migration posts --schema="title#string; body#text"
+
+
+php artisan crud:view posts 
+--fields="title#string; body#text" 
+--view-path="directory" 
+--route-group=admin 
+--form-helper=html
