@@ -1,0 +1,35 @@
+web.php
+
+Route::get('/', function ( Request $request ) {
+	$class = new Class2();	
+});
+
+
+
+==========================================================
+
+App => classes => Class1.php
+
+<?php 
+	class Class1 {
+		public function __construct()
+		{
+			echo "Construct class 2";
+		}
+	}
+ ?>
+ 
+ 
+ 
+ ========================================================
+ 
+ 
+ "autoload": {
+        "classmap": [
+            "database/seeds",
+            "database/factories",
+            "app/classes"          ////////////////////// include this line in main composer json file
+        ],
+        
+        
+================================================        
