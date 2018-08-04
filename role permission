@@ -24,3 +24,16 @@ crud:controller UserController --crud-name=user --model-name=User --view-path="a
 
 crud:view user --fields="name#string; email#email; password#password; roles#select#options={'admin':'admin'}" --view-path="admin" --route-group=admin --form-helper=laravelcollective
 ..........
+
+
+
+You should overwrite the render method to redirect (or whatever you want to do). Go to Expections/Handler.php and overwrite the render function like this:
+
+public function render($request, Exception $exception)
+{
+    if ($exception instanceof \Spatie\Permission\Exceptions\UnauthorizedException) {
+          return redirect('/');
+    }
+
+    return parent::render($request, $exception);
+}
