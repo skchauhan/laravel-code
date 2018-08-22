@@ -124,6 +124,7 @@ Route::get('admin/txt', "txt/TpController@text");
 Route::group(['namespace' => 'txt', 'prefix'=>'admin'], function() {
 	Route::get('txt', "TpController@text");
 });
+
 ........................................
 
 $arr = ['name'=>'lorem', 'email'=>'lorem@gmail.com'];
@@ -133,6 +134,7 @@ $obj = Student::create($arr);
 $obj->profile()->create(['phone'=>'999999999']);
 
 ...........................................................
+
 Fake Data in two table user and post together
 
     factory(App\User::class, 50)->create()->each(function ($u) {
