@@ -1,5 +1,9 @@
 # laravel-code
 
+Active Current Menu
+
+{{ request()->is('admin/hotel*') ? 'active' : '' }}
+
 ..................................................
 
 For change migration
