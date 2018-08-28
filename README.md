@@ -4,6 +4,8 @@ Active Current Menu
 
 {{ request()->is('admin/hotel*') ? 'active' : '' }}
 
+{{ Request::is( '/') ? 'active' : '' }}
+
 ..................................................
 
 For change migration
