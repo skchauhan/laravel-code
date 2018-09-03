@@ -1,5 +1,12 @@
 # laravel-code
 
+For Update Validation
+
+$validatedData = $request->validate([
+    'email' => ['required', Rule::unique('users')->ignore($id)],            
+]);
+
+
 Active Current Menu
 
 {{ request()->is('admin/hotel*') ? 'active' : '' }}
