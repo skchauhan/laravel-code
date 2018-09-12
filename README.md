@@ -1,5 +1,41 @@
 # laravel-code
 
+Two Column validate 
+
+column => car_id, hours
+
+Table => hourly_bookings
+
+Store function
+
+$validatedData = $request->validate([
+
+    'car_id' => ['required', 'unique:hourly_bookings,car_id,NULL,id,hours,' . $request->hours],
+	    
+    'hours' => 'required',
+	    
+    'price' => 'required',
+	    
+]);
+	
+Update Code
+
+$validatedData = $request->validate([
+
+    'car_id' => ['required', 'unique:hourly_bookings,car_id,'.$id.',id,hours,' . $request->hours],
+	    
+    'hours' => 'required',
+	    
+    'price' => 'required',
+	    
+]);
+	
+	
+-------------------------------------------------	
+	
+	
+	
+
 For Update Validation
 
 $validatedData = $request->validate([
