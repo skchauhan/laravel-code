@@ -1,8 +1,8 @@
 # laravel-code
 
-use Illuminate\Validation\Rule;
+=================Multiple column unique validation in=========== 
 
-Multiple column unique validation in 
+use Illuminate\Validation\Rule;
 
 'pickup' => ['required', Rule::unique('point_to_point_prices')->where(function ($query) use($strPickup, $strDestination, $carId, $serviceType) {
 
