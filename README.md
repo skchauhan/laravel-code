@@ -1,6 +1,26 @@
 # laravel-code
 
-Two Column validate 
+use Illuminate\Validation\Rule;
+
+Multiple column unique validation in 
+
+'pickup' => ['required', Rule::unique('point_to_point_prices')->where(function ($query) use($strPickup, $strDestination, $carId, $serviceType) {
+
+     return $query->where('pickup', $strPickup)
+		
+     ->where('destination', $strDestination)
+		
+     ->where('car_id', $carId)
+		
+     ->where('service_type', $serviceType);
+		
+}) ],
+	    
+	    
+
+
+
+===============Two Column validate ========================
 
 column => car_id, hours
 
