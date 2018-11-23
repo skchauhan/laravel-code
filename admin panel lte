@@ -1,24 +1,10 @@
-npm install 
-npm install admin-lte --save-dev
+npm install admin-lte@v3.0.0-alpha.2 --save
 
-In app.scss
-// import css files
-
-@import "~admin-lte/dist/css/AdminLTE.css";
-@import "~admin-lte/dist/css/skins/_all-skins.css";
-
-npm run watch
-
-In bootstrap.js
-require('admin-lte');
-
-===============  like this =====================
-
-
-try {
-    window.$ = window.jQuery = require('jquery');
-
-    require('bootstrap-sass');
-} catch (e) {}
+bootstrap.js
+require('bootstrap');
 
 require('admin-lte');
+
+Css
+App.scss
+@import '~admin-lte/dist/css/adminlte.css';
