@@ -1,0 +1,36 @@
+Login Controller
+protected function authenticated(Request $request, $user)
+    {
+        if ($user->status == 0) { // or whatever status column name and value indicates a blocked user
+            $message = 'User not active';
+
+            // Log the user out.
+            $this->logout($request);
+
+            // Return them to the log in form.
+            return redirect()->back()
+                ->withInput($request->only($this->username(), 'remember'))
+                ->withErrors([
+                    // This is where we are providing the error message.
+                    $this->username() => $message,
+                ]);
+        }
+    }
+    
+
+
+Login Bye email or username
+
+
+protected function credentials(Request $request)
+{
+    $field = filter_var($request->get($this->username()), FILTER_VALIDATE_EMAIL)
+        ? $this->username()
+        : 'username';
+    return [
+        $field => $request->get($this->username()),
+        'password' => $request->password,
+    ];
+}
+    
+    
