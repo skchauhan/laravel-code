@@ -1,5 +1,11 @@
 # laravel-code
 
+cron job
+
+/usr/local/bin/php /home/your_user_name/public_html/your_website_folder_name/artisan notify:email 
+
+
+
 =================Multiple column unique validation in=========== 
 
 use Illuminate\Validation\Rule;
