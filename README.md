@@ -218,3 +218,34 @@ Fake Data in two table user and post together
 	
     });
 
+
+
+
+image upload & get
+
+# config/filesystems.php
+
+<?php
+
+return [
+    ...
+    'disks' => [
+        ...
+        'public' => [
+            'driver' => 'local',
+            'root'   => public_path() . '/uploads',
+            'url' => env('APP_URL').'/public',
+            'visibility' => 'public',
+        ],
+        ...
+    ],
+];
+
+
+
+    $cover = $request->file('bookcover');
+    $extension = $cover->getClientOriginalExtension();
+    $filename = $cover->getFilename().'.'.$extension;
+    Storage::disk('public')->put('/anyfoldr/'.$filename,  File::get($cover));
+
+
