@@ -243,9 +243,15 @@ return [
 
 
 
+
+//////////
+
+
     $cover = $request->file('bookcover');
     $extension = $cover->getClientOriginalExtension();
     $filename = $cover->getFilename().'.'.$extension;
     Storage::disk('public')->put('/anyfoldr/'.$filename,  File::get($cover));
 
+
+        <img class="card-img-top" src="{{url('uploads/'.$book->filename)}}" alt="{{$book->filename}}">
 
