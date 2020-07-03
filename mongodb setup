@@ -10,3 +10,5 @@ MONGO_DB_DATABASE=test
 MONGO_DB_USERNAME=
 MONGO_DB_PASSWORD=
 
+Every model Extends by this
+use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
